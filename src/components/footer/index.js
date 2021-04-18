@@ -4,7 +4,7 @@ const { Text } = Typography;
 
 const S = {
   Footer: styled(Layout.Footer)`
-    background: #ebeced;
+    background-color: #ebeced;
     text-align: center;
   `,
 };

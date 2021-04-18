@@ -2,8 +2,6 @@ import { Row, Col } from 'antd';
 
 import WeatherCards from './cards/index';
 
-import S from './styles.sc';
-
 const WeatherInfo = () => {
   return (
     <Row>

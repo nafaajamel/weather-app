@@ -1,34 +1,31 @@
 import { useState, useEffect, useContext } from 'react';
-
+import axios from 'axios';
 import styled from 'styled-components';
 import { Row, Col } from 'antd';
 
 import WeatherInfo from './../weather-info';
 
-import { userContext } from './../../context/user';
+import { weatherContext } from '../../context/weather';
 
 const S = {
   Container: styled(Row)`
     min-height: 81vh;
+    padding: 30px;
   `,
 };
 
 const Container = () => {
-  const { location, setLocation } = useContext(userContext);
-
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(setLocation);
-    }
-  }, []);
+  const { location, setLocation, loading } = useContext(weatherContext);
 
   return (
-    <S.Container>
-      <Col xs={12}>
-        <WeatherInfo />
-      </Col>
-      <Col xs={12}></Col>
-    </S.Container>
+    !loading && (
+      <S.Container>
+        <Col xs={14}>
+          <WeatherInfo />
+        </Col>
+        <Col xs={10}></Col>
+      </S.Container>
+    )
   );
 };
 

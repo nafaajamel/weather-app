@@ -7,16 +7,16 @@ import Header from './components/header';
 import Container from './components/container';
 import Footer from './components/footer';
 
-import UserProvider from './context/user';
+import WeatherProvider from './context/weather';
 
 function App() {
   return (
     <Layout>
       <Header />
       <Layout.Content>
-        <UserProvider>
+        <WeatherProvider>
           <Container />
-        </UserProvider>
+        </WeatherProvider>
       </Layout.Content>
       <Footer />
     </Layout>
