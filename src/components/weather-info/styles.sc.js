@@ -15,8 +15,8 @@ S.HomeCard = styled(Row)`
 `;
 
 S.WeatherIcon = styled.img`
-  height: 80px;
   display: block;
+  height: ${({ size }) => `${size}px` || 'auto'};
 `;
 
 S.Text = styled(Typography.Text)`

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Row, Col } from 'antd';
 
 import WeatherInfo from './../weather-info';
-
+import Map from './../map';
 import { weatherContext } from '../../context/weather';
 
 const S = {
@@ -23,7 +23,9 @@ const Container = () => {
         <Col xs={14}>
           <WeatherInfo />
         </Col>
-        <Col xs={10}></Col>
+        <Col xs={10}>
+          <Map />
+        </Col>
       </S.Container>
     )
   );

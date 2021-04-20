@@ -7,12 +7,12 @@ export default function WeatherProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [location, setLocation] = useState(null);
   const [staticData, setStaticData] = useState(null);
-
-  const WEATHER_API_KEY = 'e9338267048203adc9f97ec82a49af0f';
+  const [userLocation, setUserLocation] = useState({});
+  const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
   // fetch static weather info
-  const fetchStaticData = async (coords) => {
-    const { latitude, longitude } = coords;
+  const fetchStaticData = async (location) => {
+    const { latitude, longitude } = location;
 
     const res = await axios.get(
       `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&units=metric`
@@ -22,7 +22,7 @@ export default function WeatherProvider({ children }) {
 
   useEffect(() => {
     if (location) {
-      fetchStaticData(location.coords)
+      fetchStaticData(location)
         .then((data) => {
           console.log({ data });
           setStaticData(data);
@@ -38,7 +38,11 @@ export default function WeatherProvider({ children }) {
 
   useEffect(() => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(setLocation);
+      navigator.geolocation.getCurrentPosition((l) => {
+        const { latitude, longitude } = l.coords;
+        setLocation({ latitude, longitude });
+        setUserLocation({ latitude, longitude });
+      });
     }
   }, []);
   const values = {
@@ -48,6 +52,7 @@ export default function WeatherProvider({ children }) {
     setStaticData,
     loading,
     setLoading,
+    userLocation,
   };
 
   return (
