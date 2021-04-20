@@ -18,7 +18,7 @@ const S = {
   `,
 };
 const DayCard = styled(Col)`
-  width: 200px;
+  width: 130px;
   aspect-ratio: 6/9;
   display: flex;
   flex-direction: column;
