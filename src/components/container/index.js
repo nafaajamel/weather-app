@@ -1,10 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+
 import styled from 'styled-components';
-import { Row, Col } from 'antd';
+import { Row, Col, Modal } from 'antd';
 
 import WeatherInfo from './../weather-info';
 import Map from './../map';
+import SearchBox from './../map/search-box';
+
 import { weatherContext } from '../../context/weather';
 
 const S = {
@@ -14,19 +16,29 @@ const S = {
 };
 
 const Container = () => {
-  const { location, setLocation, loading } = useContext(weatherContext);
-
+  const { loading } = useContext(weatherContext);
+  const [isModalVisible, setIsModalVisible] = useState(loading);
+  useEffect(() => {
+    setIsModalVisible(loading);
+  }, [loading]);
   return (
-    !loading && (
-      <S.Container>
-        <Col xs={14}>
-          <WeatherInfo />
-        </Col>
-        <Col xs={10}>
-          <Map />
-        </Col>
-      </S.Container>
-    )
+    <S.Container justify='center'>
+      {!loading ? (
+        <>
+          <Col lg={14} xs={20}>
+            <WeatherInfo />
+          </Col>
+          <Col lg={10} xs={20}>
+            <Map />
+          </Col>
+        </>
+      ) : (
+        <Modal visible={isModalVisible}>
+          <b>Please enable your position or type your city name manually</b>
+          <SearchBox />
+        </Modal>
+      )}
+    </S.Container>
   );
 };
 

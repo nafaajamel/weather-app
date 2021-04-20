@@ -63,20 +63,23 @@ const DayCard = ({ date, min, max, icon, wind }) => {
 
 const DailyCard = () => {
   const { dailyData } = useContext(weatherContext);
-  console.log({ dailyData });
+
+  const getDateFormatted = (unit) => {
+    let date = moment(unit * 1000);
+    let dayNumer = date.format('D');
+    let dayLetter = date.format('ddd');
+    return `${dayLetter}. ${dayNumer}`;
+  };
   return (
     <S.Container justify='space-around'>
       <Col xs={24}>
         <Title size={26}>Daily forecast</Title>
       </Col>
 
-      {dailyData.map((daily) => {
+      {dailyData.map((daily, i) => {
         const { dt, wind_speed, weather, temp } = daily;
 
-        let date = moment(dt * 1000);
-        let dayNumer = date.format('D');
-        let dayLetter = date.format('ddd');
-        const dateFormatted = `${dayLetter}. ${dayNumer}`;
+        const dateFormatted = i === 0 ? 'Today' : getDateFormatted(dt);
 
         const iconCode = weather[0].icon;
         const { min, max } = temp;
