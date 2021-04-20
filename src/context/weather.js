@@ -48,12 +48,16 @@ export default function WeatherProvider({ children }) {
 
   useEffect(() => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((l) => {
-        const { latitude, longitude } = l.coords;
-        setLocation({ latitude, longitude });
-        setUserLocation({ latitude, longitude });
-        setLoading(undefined);
-      });
+      navigator.geolocation.getCurrentPosition(
+        (l) => {
+          const { latitude, longitude } = l.coords;
+          setLocation({ latitude, longitude });
+          setUserLocation({ latitude, longitude });
+        },
+        () => {
+          setLoading(true);
+        }
+      );
     }
   }, []);
   const values = {

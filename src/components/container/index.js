@@ -21,6 +21,8 @@ const Container = () => {
   useEffect(() => {
     setIsModalVisible(loading);
   }, [loading]);
+
+  console.log(loading);
   return (
     <S.Container justify='center'>
       {loading === false ? (
@@ -34,14 +36,11 @@ const Container = () => {
         </>
       ) : (
         <Modal visible={isModalVisible}>
-          {loading === undefined ? (
+          <div>
             <Spin size='large' />
-          ) : (
-            <div>
-              <b>Please enable your position or type your city name manually</b>
-              <SearchBox />
-            </div>
-          )}
+            <b>Please enable your position or type your city name manually</b>
+            <SearchBox />
+          </div>
         </Modal>
       )}
     </S.Container>
