@@ -1,12 +1,13 @@
 import { Row, Col } from 'antd';
 
-import HomeCard from './home-card';
-
+import MainCard from './main-card';
+import DailyCard from './daily-card';
 const WeatherCards = () => {
   return (
     <Row justify='center'>
       <Col xs={18}>
-        <HomeCard />
+        <MainCard />
+        <DailyCard />
       </Col>
     </Row>
   );

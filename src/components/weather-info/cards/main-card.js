@@ -2,11 +2,11 @@ import { useContext, useMemo } from 'react';
 
 import { Space, Col, Typography } from 'antd';
 
-import { weatherContext } from './../../../context/weather';
+import { weatherContext } from '../../../context/weather';
 
 import windImg from './../../../assets/icons/wind.png';
 
-import S from './../styles.sc';
+import S from '../styles.sc';
 
 const { Title } = Typography;
 
@@ -20,7 +20,7 @@ const toFixed = (temp) => {
   return temp.toFixed();
 };
 
-const HomeCard = () => {
+const MainCard = () => {
   const { staticData } = useContext(weatherContext);
   const cityName = staticData.name;
   const { description } = staticData.weather[0];
@@ -62,4 +62,4 @@ const HomeCard = () => {
   );
 };
 
-export default HomeCard;
+export default MainCard;
