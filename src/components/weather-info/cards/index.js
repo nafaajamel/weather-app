@@ -5,7 +5,7 @@ import DailyCard from './daily-card';
 const WeatherCards = () => {
   return (
     <Row justify='center'>
-      <Col xs={18}>
+      <Col xs={20} lg={18}>
         <MainCard />
         <DailyCard />
       </Col>

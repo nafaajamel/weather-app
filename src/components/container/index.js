@@ -9,7 +9,6 @@ import { weatherContext } from '../../context/weather';
 
 const S = {
   Container: styled(Row)`
-    height: 81vh;
     padding: 30px;
   `,
 };

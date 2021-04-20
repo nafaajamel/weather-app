@@ -22,24 +22,27 @@ export default function WeatherProvider({ children }) {
       throw res.error;
     }
     setStaticData(res.data);
-    setLoading(false);
   };
 
   const fetchDailyForecast = async () => {
     const { latitude, longitude } = location;
     let res = await axios.get(
-      `http://api.openweathermap.org/data/2.5/forecast/daily?lat=${latitude}&lon=${longitude}&cnt=5&appid=${WEATHER_API_KEY}&units=metric`
+      `http://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&cnt=5&appid=${WEATHER_API_KEY}&units=metric`
     );
+
     if (res.error) {
       throw res.error;
     }
-    setDailyData(res.data);
+    setDailyData(res.data.daily);
   };
 
   useEffect(() => {
     if (location) {
-      fetchStaticData();
-      fetchDailyForecast();
+      fetchStaticData().then(() => {
+        fetchDailyForecast().then(() => {
+          setLoading(false);
+        });
+      });
     }
   }, [location]);
 

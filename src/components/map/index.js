@@ -15,7 +15,7 @@ const LocationIcon = styled.img`
 `;
 
 const MapContainer = styled.div`
-  aspect-ratio: 16/9;
+  aspect-ratio: 4/3;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
 `;
@@ -69,6 +69,7 @@ const Map = () => {
     <>
       <MapContainer>
         <ReactMapGL
+          attributionControl={false}
           mapStyle={MAP_STYLE_URL}
           mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
           {...viewport}
