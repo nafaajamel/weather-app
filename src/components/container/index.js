@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 
 import styled from 'styled-components';
-import { Row, Col, Modal } from 'antd';
+import { Row, Col, Modal, Spin } from 'antd';
 
 import WeatherInfo from './../weather-info';
 import Map from './../map';
@@ -23,7 +23,7 @@ const Container = () => {
   }, [loading]);
   return (
     <S.Container justify='center'>
-      {!loading ? (
+      {loading === false ? (
         <>
           <Col lg={14} xs={20}>
             <WeatherInfo />
@@ -34,8 +34,14 @@ const Container = () => {
         </>
       ) : (
         <Modal visible={isModalVisible}>
-          <b>Please enable your position or type your city name manually</b>
-          <SearchBox />
+          {loading === undefined ? (
+            <Spin size='large' />
+          ) : (
+            <div>
+              <b>Please enable your position or type your city name manually</b>
+              <SearchBox />
+            </div>
+          )}
         </Modal>
       )}
     </S.Container>

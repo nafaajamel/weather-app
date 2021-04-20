@@ -52,6 +52,7 @@ export default function WeatherProvider({ children }) {
         const { latitude, longitude } = l.coords;
         setLocation({ latitude, longitude });
         setUserLocation({ latitude, longitude });
+        setLoading(undefined);
       });
     }
   }, []);
